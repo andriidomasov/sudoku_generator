@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Sudoku Generator</h1>
+    <form method="POST">
+        <label for="hidden_per_square">Number of fields to hide per 3x3 square:</label>
+        <input type="number" id="hidden_per_square" name="hidden_per_square" min="1" max="6" required>
+        <button type="submit">Generate Sudoku</button>
+    </form>
+
+    {% if solution and puzzle %}
+    <h2>Sudoku Puzzle</h2>
+    <div class="sudoku-container">
+        {% for row in puzzle %}
+            {% for cell in row %}
+                <div class="cell {{ 'hidden' if cell == 0 else '' }}">
+                    {{ cell if cell != 0 else '' }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <h2>
+        <button id="toggle-solution" class="collapsible">Show/Hide Solution</button>
+    </h2>
+    <div id="solution-container" class="hidden">
+        <div class="sudoku-container">
+            {% for row in solution %}
+                {% for cell in row %}
+                    <div class="cell {{ 'solution' if cell < 0 else '' }}">{{ cell if cell > 0 else cell * -1 }}</div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <script>
+        document.getElementById("toggle-solution").addEventListener("click", function() {
+            const solutionContainer = document.getElementById("solution-container");
+            solutionContainer.classList.toggle("hidden");
+        });
+    </script>
+</body>
+</html>

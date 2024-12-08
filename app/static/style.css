@@ -1,0 +1,86 @@
+body {
+    font-family: "Encode Sans SC", "Montserrat", sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+#hidden_per_square {
+    width:40pt;
+}
+.sudoku-container {
+    display: inline-block;
+    margin: 20px auto;
+    border: 3px solid #333;
+    width: 450px;
+    height: 450px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 0;
+}
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333;
+    font-size: 30px;
+    box-sizing: border-box;
+}
+.cell.hidden {
+    background-color: #f0f0f0;
+    color: #ccc;
+}
+.cell.solution {
+    background-color: #90EE90;
+}
+.top_thick {
+    border-top: 3px solid #333;
+}
+
+.bottom_thick {
+    border-bottom: 3px solid #333;
+}
+
+.left_thick {
+    border-left: 3px solid #333;
+}
+
+.right_thick {
+    border-right: 3px solid #333;
+}
+
+/* Thicker borders for 3x3 grid separation */
+.cell:nth-child(3n) {
+    border-right: 3px solid #333;
+}
+
+.cell:nth-child(9n) {
+    border-right: 0px solid #333;
+}
+
+.cell:nth-child(n + 19):nth-child(-n + 27), .cell:nth-child(n + 46):nth-child(-n + 54){
+    border-bottom: 3px solid #333;
+}
+
+h1 {
+    color: #333;
+}
+
+button.collapsible {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button.collapsible:hover {
+    background-color: #0056b3;
+}
+
+#solution-container.hidden {
+    display: none;
+}
