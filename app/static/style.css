@@ -84,3 +84,22 @@ button.collapsible:hover {
 #solution-container.hidden {
     display: none;
 }
+
+.highlighted {
+    background-color: #e0ffe0;  /* light green */
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.grid-item {
+    text-align: center;
+}
+
+.highlighted {
+    background-color: #e0ffe0;
+}
